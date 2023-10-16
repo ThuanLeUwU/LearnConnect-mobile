@@ -1,0 +1,447 @@
+{
+    "questions": [
+        {
+          
+            "questionText": "From the given options which would you consider as environmental analysis that you would perform as a program manager?",
+            "index":"1",
+            "answers": [
+                {
+                    "label": "Monte-Carlo Simulations, Comparative advantage Analysis, SWOT analysis",
+                    "value": 0
+                },
+                {
+                    "label": "SWOT Analysis, assumptions analysis, Ishikawa analysis",
+                    "value": 0
+                },
+                {
+                    "label": "Feasibility study, SWOT analysis, Monte-Carlo simulations",
+                    "value": 0
+                },
+                {
+                    "label": "Assumptions analysis, SWOT analysis, historical information",
+                    "value": 1
+                }
+            ]
+        },
+        
+        {
+            "questionText": "From the given options which would you consider as environmental analysis that you would perform as a program manager?",
+            "index":"2",
+            "answers": [
+                {
+                    "label": "Monte-Carlo Simulations, Comparative advantage Analysis, SWOT analysis",
+                    "value": 0
+                },
+                {
+                    "label": "SWOT Analysis, assumptions analysis, Ishikawa analysis",
+                    "value": 0
+                },
+                {
+                    "label": "Feasibility study, SWOT analysis, Monte-Carlo simulations",
+                    "value": 1
+                },
+                {
+                    "label": "Assumptions analysis, SWOT analysis, historical information",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Portfolios influence programs by its needs. Such as,",
+            "index":"3",
+            "answers": [
+                {
+                    "label": "High level risks and issues",
+                    "value": 0
+                },
+                {
+                    "label": "Schedule Deadlines",
+                    "value": 1
+                },
+                {
+                    "label": "Policies and Standards",
+                    "value": 0
+                },
+                {
+                    "label": "Requirement from Portfolio Review Board",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Portfolios influence programs by its needs. Such as,",
+            "index":"4",
+            "answers": [
+                {
+                    "label": "High level risks and issues",
+                    "value": 1
+                },
+                {
+                    "label": "Schedule Deadlines",
+                    "value": 0
+                },
+                {
+                    "label": "Policies and Standards",
+                    "value": 0
+                },
+                {
+                    "label": "Requirement from Portfolio Review Board",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "From the given options which would you consider as enterprise environmental factors for your program?",
+            "index":"5",
+            "answers": [
+                {
+                    "label": "Legislation, Sponsor, Regulation",
+                    "value": 1
+                },
+                {
+                    "label": "Board members, Funds and Economy",
+                    "value": 0
+                },
+                {
+                    "label": "Market, Regulation and Industry",
+                    "value": 0
+                },
+                {
+                    "label": "Interest Rate, Exchange rate and organisation's processes",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Program charter was issued and you were appointed by the program sponsor to initiate the program. ",
+            "index":"6",
+            "answers": [
+                {
+                    "label": "Because, you didn't analyse the required resources and the skillsets",
+                    "value": 1
+                },
+                {
+                    "label": "Because, you didn't clarify benefits fulfilment and integration needs",
+                    "value": 0
+                },
+                {
+                    "label": "Because, you didn't analyse program's budget",
+                    "value": 0
+                },
+                {
+                    "label": "Because, you didn't quantify identified benefits",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "You are asked to be a program manager to upgrade IT infrastructure of your company.",
+            "index":"7",
+            "answers": [
+                {
+                    "label": "is expected to consume huge costs",
+                    "value": 1
+                },
+                {
+                    "label": "is expected to consume huge amount of organizational resources",
+                    "value": 0
+                },
+                {
+                    "label": "is considered catalyst for change",
+                    "value": 0
+                },
+                {
+                    "label": "is better implemented in phases",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Once your program is approved, what should the board do next?",
+            "index":"8",
+            "answers": [
+                {
+                    "label": "Plan first governance meeting to set ground rules",
+                    "value": 1
+                },
+                {
+                    "label": "Review initial assessment results",
+                    "value": 0
+                },
+                {
+                    "label": "Get resources for planning organized",
+                    "value": 0
+                },
+                {
+                    "label": "Review Program Roadmap",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "From the given options, which do you think can serve to be the fundamental objective for any program?",
+            "index":"9",
+            "answers": [
+                {
+                    "label": "Align with strategic objectives in generating program benefits",
+                    "value": 1
+                },
+                {
+                    "label": "Align program benefits with customer expectations",
+                    "value": 0
+                },
+                {
+                    "label": "To maximise benefits in presence of component interdependencies",
+                    "value": 0
+                },
+                {
+                    "label": "To generate strategic benefits by stakeholders coordinating program's interdependent components",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Your program is selected by the steering committee. What should you do first from the list?",
+            "index":"10",
+            "answers": [
+                {
+                    "label": "Prepare mission statement",
+                    "value": 1
+                },
+                {
+                    "label": "Prepare business case",
+                    "value": 0
+                },
+                {
+                    "label": "Prepare high level program roadmap",
+                    "value": 0
+                },
+                {
+                    "label": "Identify program requirements",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Why should projects be managed as a program?",
+            "index":"11",
+            "answers": [
+                {
+                    "label": "Projects need more funding compared to the program",
+                    "value": 1
+                },
+                {
+                    "label": "Projects need much more resources compared to the program",
+                    "value": 0
+                },
+                {
+                    "label": "generated benefits will be better with program",
+                    "value": 0
+                },
+                {
+                    "label": "If projects are related, they must be combined",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Programs are long and complex by nature hence,",
+            "index":"12",
+            "answers": [
+                {
+                    "label": "Strategic opportunities for change should be sought for and exploited",
+                    "value": 1
+                },
+                {
+                    "label": "Program Plan should be prepared with Mission, Vision & Goals to achieve clear direction",
+                    "value": 0
+                },
+                {
+                    "label": "Enterprise environmental factors should be closely monitored",
+                    "value": 0
+                },
+                {
+                    "label": "A master schedule should be prepared along with Benefits Realization Plan and kept up to date to ensure program's success",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Portfolios influence programs by its needs. Such as,",
+            "index":"13",
+            "answers": [
+                {
+                    "label": "High level risks and issues",
+                    "value": 1
+                },
+                {
+                    "label": "Schedule Deadlines",
+                    "value": 0
+                },
+                {
+                    "label": "Policies and Standards",
+                    "value": 0
+                },
+                {
+                    "label": "Requirement from Portfolio Review Board",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "To support the decision makers to come to a decision about the program's existence,",
+            "index":"14",
+            "answers": [
+                {
+                    "label": "key stakeholders should be consulted",
+                    "value": 1
+                },
+                {
+                    "label": "feasibility study should be conducted",
+                    "value": 0
+                },
+                {
+                    "label": "program initial program charter should be submitted",
+                    "value": 0
+                },
+                {
+                    "label": "program charter should be submitted",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Why program should support organization's strategic goals?",
+            "index":"15",
+            "answers": [
+                {
+                    "label": "Because, executive steering committee initiated the program",
+                    "value": 1
+                },
+                {
+                    "label": "Because, program sponsor is part of the executive steering committee",
+                    "value": 0
+                },
+                {
+                    "label": "Because, strategic goals generate the revenue to run the program",
+                    "value": 0
+                },
+                {
+                    "label": "Because, program benefits in some or some other way affect entire organization",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Which one is most important for board to decide whether program can be approved or not?",
+            "index":"16",
+            "answers": [
+                {
+                    "label": "Resources",
+                    "value": 1
+                },
+                {
+                    "label": "Risks",
+                    "value": 0
+                },
+                {
+                    "label": "Constraints",
+                    "value": 0
+                },
+                {
+                    "label": "Benefits",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "SWOT analysis provides information for",
+            "index":"17",
+            "answers": [
+                {
+                    "label": "developing program roadmap",
+                    "value": 1
+                },
+                {
+                    "label": "developing risk register",
+                    "value": 0
+                },
+                {
+                    "label": "developing issues register",
+                    "value": 0
+                },
+                {
+                    "label": "developing program plan",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "You would conduct comparative advantage analysis so that,",
+            "index":"18",
+            "answers": [
+                {
+                    "label": "Alternative resources of the program can be compared",
+                    "value": 1
+                },
+                {
+                    "label": "You can perform what-if analysis on program's objectives",
+                    "value": 0
+                },
+                {
+                    "label": "Program's funding sources can be compared",
+                    "value": 0
+                },
+                {
+                    "label": "Program's Positive Risks and their advantages can be compared",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "Once your program is approved, what should the board do next?",
+            "index":"19",
+            "answers": [
+                {
+                    "label": "Plan first governance meeting to set ground rules",
+                    "value": 1
+                },
+                {
+                    "label": "Review initial assessment results",
+                    "value": 0
+                },
+                {
+                    "label": "Get resources for planning organized",
+                    "value": 0
+                },
+                {
+                    "label": "Review Program Roadmap",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "questionText": "You are part of steering board and represent yourself as a head of operations. ",
+            "index":"20",
+            "answers": [
+                {
+                    "label": "Impact to ongoing operations activities",
+                    "value": 1
+                },
+                {
+                    "label": "Interactions between program and operational activities",
+                    "value": 0
+                },
+                {
+                    "label": "Program's financial needs",
+                    "value": 0
+                },
+                {
+                    "label": "Operational requirements from program",
+                    "value": 0
+                }
+            ]
+        }
+        
+    ]
+}
