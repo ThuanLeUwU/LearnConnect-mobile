@@ -1,5 +1,5 @@
 import {Rating, VectorIcons} from '../Components';
-import React from 'react';
+import React, { useState } from 'react';
 import images from '../index';
 import {SF, Colors} from '../Utiles';
 import {RouteName} from '../routes';
