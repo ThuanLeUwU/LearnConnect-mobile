@@ -13,8 +13,23 @@ import {Style, Login} from '../../../style';
 import {SH} from '../../../Utiles';
 import images from '../../../index';
 import {useTranslation} from 'react-i18next';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
 
 const Loginscreen = props => {
+  async function onGoogleButtonPress() {
+    // Check if your device supports Google Play
+    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+    // Get the users ID token
+    const {idToken} = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  }
+
   const {navigation} = props;
   const [mobileNumber, setMobileNumber] = useState('');
   const {t} = useTranslation();
@@ -72,7 +87,11 @@ const Loginscreen = props => {
               <View style={Logins.LoginButton}>
                 <Button
                   title="Login by Email"
-                  onPress={() => navigation.navigate(RouteName.OTP_SCREEN)}
+                  onPress={() =>
+                    onGoogleButtonPress().then(() =>
+                      console.log('Signed in with Google!'),
+                    )
+                  }
                 />
               </View>
               <Spacing space={SH(10)} />

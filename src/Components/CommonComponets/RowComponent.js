@@ -1,8 +1,18 @@
-import React, { useMemo } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {useMemo} from 'react';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import propTypes from 'prop-types';
 
-function RowComponent({ children, rowStyle, flex, backgroundColor, width, height, alignItems, touchable, onPress }) {
+function RowComponent({
+  children,
+  rowStyle,
+  flex,
+  backgroundColor,
+  width,
+  height,
+  alignItems,
+  touchable,
+  onPress,
+}) {
   const styles = useMemo(
     () =>
       StyleSheet.create({
@@ -19,9 +29,13 @@ function RowComponent({ children, rowStyle, flex, backgroundColor, width, height
     [flex, rowStyle, backgroundColor, width, height, alignItems],
   );
 
-  return touchable
-    ? <TouchableOpacity style={styles.rowStyles} onPress={onPress}>{children}</TouchableOpacity>
-    : <View style={styles.rowStyles}>{children}</View>;
+  return touchable ? (
+    <TouchableOpacity style={styles.rowStyles} onPress={onPress}>
+      {children}
+    </TouchableOpacity>
+  ) : (
+    <View style={styles.rowStyles}>{children}</View>
+  );
 }
 
 RowComponent.defaultProps = {
@@ -32,7 +46,7 @@ RowComponent.defaultProps = {
   width: null,
   height: null,
   touchable: false,
-  onPress: () => { }
+  onPress: () => {},
 };
 
 RowComponent.propTypes = {

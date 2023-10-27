@@ -1,37 +1,36 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, {useMemo, useEffect, useRef} from 'react';
 import Lottie from 'lottie-react-native';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
-import { SW } from '../../Utiles';
+import {Animated, Easing, StyleSheet, View} from 'react-native';
+import {SW} from '../../Utiles';
 
 function LottieAnimation(props) {
-  const { source, Lottiewidthstyle, centerlottw } = props;
+  const {source, Lottiewidthstyle, centerlottw} = props;
   const animationProgress = useRef(new Animated.Value(0));
   useEffect(() => {
     Animated.timing(animationProgress.current, {
       toValue: 1,
       duration: 5000,
       easing: Easing.linear,
-      useNativeDriver: false
+      useNativeDriver: false,
     }).start();
-  }, [])
-  const styles = useMemo(
-    () =>
-      StyleSheet.create({
-        Setlottesfilestyle: {
-          width: SW(330),
-        },
-        centerlottw: {
-          flexDirection: 'row',
-          justifyContent: 'center',
-          width: '100%'
-        }
-      }),
+  }, []);
+  const styles = useMemo(() =>
+    StyleSheet.create({
+      Setlottesfilestyle: {
+        width: SW(330),
+      },
+      centerlottw: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+      },
+    }),
   );
   return (
-    <View style={[styles.centerlottw, { ...centerlottw }]}>
+    <View style={[styles.centerlottw, {...centerlottw}]}>
       <Lottie
         resizeMode="cover"
-        style={[styles.Setlottesfilestyle, { ...Lottiewidthstyle }]}
+        style={[styles.Setlottesfilestyle, {...Lottiewidthstyle}]}
         autoPlay={true}
         loop
         source={source}
@@ -39,5 +38,5 @@ function LottieAnimation(props) {
       />
     </View>
   );
-};
+}
 export default LottieAnimation;

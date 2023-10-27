@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "915054679433",
+    "project_id": "learnconnect-6f324",
+    "storage_bucket": "learnconnect-6f324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915054679433:android:8d5816871398cb3aeabd58",
+        "android_client_info": {
+          "package_name": "com.company.learnconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915054679433-v7oeg9lcvkurb30l28j4dfbiemqkocq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.learnconnect",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "915054679433-fsnp9ueks5o2ges1tn7s8g32qgiefu6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEcAdaugRtkZet6j-Qyk-8JyPO9KXtD6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915054679433-fsnp9ueks5o2ges1tn7s8g32qgiefu6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

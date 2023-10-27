@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState, useCallback} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {HomeStyles} from '../../style';
@@ -8,11 +8,6 @@ import {useTheme} from '@react-navigation/native';
 import axios from 'axios';
 // import axios from 'axios';
 
-// use for test
-const sleep = ms => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-};
-
 const HomeCarouselSlider = props => {
   const {navigation, onPress} = props;
   const {Colors} = useTheme();
@@ -21,37 +16,44 @@ const HomeCarouselSlider = props => {
   const {t} = useTranslation();
   const [carouselItem, setCarouselItem] = useState([]);
   console.log('tui nè', carouselItem);
+  // const fetchData = async () => {
+  //     console.log(await axios.get('https://learnconnectapitest.azurewebsites.net/api/course'))
+  //       // .then(res => {
+  //         // cái đó là eslint thôi
 
-  // call API to get courses
-  const fetchData = useCallback(async () => {
-    console.log('zzzz');
-    try {
-      const {data: responseData = []} = await axios
-        .get('https://learnconnectapitest.azurewebsites.net/api/course')
-        .catch(error => {
-          console.log('lỗi hả');
-        });
+  //       //   console.log('dddd', res.data);
+  //       //   setCarouselItem(res?.data);
+  //       // });
+  //     // if (responseData?.data) {
+  //     // }
+  //   // } catch (error) {
+  //   //   console.log('Không ra');
+  //   // }
 
-      // use for test
-      await sleep(1000);
-      console.log('Use for test response', responseData);
+  //   // console.log('tui nè má', responseData?.data);
+  // };
 
-      if (responseData.length) {
-        setCarouselItem(responseData);
-      }
-    } catch (error) {
-      console.log('Không ra');
-    }
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  //   setTimeout(() => {
+  //     console.log('lâu zậy', carouselItem);
+  //   }, 10000);
+  // }, [carouselItem]);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    const abc = async () => {
+      await axios
+        .get('https://learnconnectapitest.azurewebsites.net/api/course')
+        .then(res => {
+          console.log('rés', res?.data);
+          setCarouselItem(res?.data);
+        })
+        .catch(err => console.log('err', err));
+    };
+    abc();
+  }, []);
 
-  // if state is empty => return null
-  if (!carouselItem) {
-    return;
-  }
+  console.log('dâta', carouselItem);
 
   const _renderItem = ({item, index}) => {
     return (
@@ -62,21 +64,20 @@ const HomeCarouselSlider = props => {
           <Image
             style={HomeStyle.imagsetstyle}
             resizeMode="stretch"
-            source={item.imge}
+            source={{
+              uri: `${item.imageUrl}`,
+            }}
           />
-          <Text style={HomeStyle.textContainer}>{t(item.title)}</Text>
-          <Text style={HomeStyle.textContainertwo}>
-            {t(item.paregraphtitle)}
-          </Text>
+          <Text style={HomeStyle.textContainer}>{t(item.name)}</Text>
+          <Text style={HomeStyle.textContainertwo}>{t(item.description)}</Text>
         </TouchableOpacity>
       </View>
     );
   };
-
   return (
     <Carousel
       ref={c => (_slider1Ref = c)}
-      data={CarouselItemsFirst}
+      data={carouselItem}
       renderItem={_renderItem}
       sliderWidth={widthPercent(100)}
       itemWidth={widthPercent(85)}

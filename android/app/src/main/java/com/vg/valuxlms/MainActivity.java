@@ -1,4 +1,5 @@
-package com.vg.valuxlms;
+package com.company.learnconnect
+;
 
 import com.facebook.react.ReactActivity;
 
