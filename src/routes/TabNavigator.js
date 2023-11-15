@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   ExamTab,
+  CoursesScreen,
   HomeTab,
   MyCourseTab,
   ProfileTab,
@@ -110,9 +111,9 @@ function HomeTabScreenStack(props) {
               NotificationOnpress={() =>
                 navigation.navigate(RouteName.NOTIFICATION_SCREEN)
               }
-              CheckOutOnPress={() =>
-                navigation.navigate(RouteName.CHECKOUT_SCREEN)
-              }
+              // CheckOutOnPress={() =>
+              //   navigation.navigate(RouteName.CHECKOUT_SCREEN)
+              // }
             />
           ),
         }}
@@ -138,44 +139,45 @@ function MyCourseTabScreenStack(props) {
           ),
           ...HeaderArray,
           headerLeft: () => <HeaderLeftMenuIcon {...props} />,
-          headerRight: () => (
-            <HeaderRightIcon
-              OnlineClass={() =>
-                navigation.navigate(RouteName.ONLINE_CLASS_SCREEN)
-              }
-              ChatOnpress={() => navigation.navigate(RouteName.CHAT_SCREEN)}
-              CheckOutOnPress={() =>
-                navigation.navigate(RouteName.CHECKOUT_SCREEN)
-              }
-            />
+          headerRight: () => ( <ColorPicker />
+            // <HeaderRightIcon
+            //   OnlineClass={() =>
+            //     navigation.navigate(RouteName.ONLINE_CLASS_SCREEN)
+            //    }
+            //   ChatOnpress={() => navigation.navigate(RouteName.CHAT_SCREEN)}
+            //   CheckOutOnPress={() =>
+            //     navigation.navigate(RouteName.CHECKOUT_SCREEN)
+            //   }
+            // />
           ),
         }}
       />
     </Stack.Navigator>
   );
 }
-function ExamTabScreenStack(props) {
+function CourseTabScreenStack(props) {
   const {t} = useTranslation();
   const {navigation} = props;
   return (
-    <Stack.Navigator initialRouteName="ExamTab">
+    <Stack.Navigator initialRouteName="CourseTab">
       <Stack.Screen
-        name="ExamTab"
-        component={ExamTab}
+        name="CourseTab"
+        component={CoursesScreen}
         options={{
           headerTitle: props => (
             <AppHeader
               rightView={Style.RemoveBgColor}
               {...props}
-              headerTitle={t('Customesidebar_title_20')}
+              headerTitle={t('Courses')}
             />
           ),
           ...HeaderArray,
           headerLeft: () => <HeaderLeftMenuIcon {...props} />,
           headerRight: () => (
-            <ColorPickerandCheckoutIcon
-              onPress={() => navigation.navigate(RouteName.CHECKOUT_SCREEN)}
-            />
+            <ColorPicker />
+            // <ColorPickerandCheckoutIcon
+            //   onPress={() => navigation.navigate(RouteName.CHECKOUT_SCREEN)}
+            // />
           ),
         }}
       />
@@ -201,9 +203,10 @@ function WishlistTabScreenStack(props) {
           ...HeaderArray,
           headerLeft: () => <HeaderLeftMenuIcon {...props} />,
           headerRight: () => (
-            <ColorPickerandCheckoutIcon
-              onPress={() => navigation.navigate(RouteName.CHECKOUT_SCREEN)}
-            />
+            <ColorPicker />
+            // <ColorPickerandCheckoutIcon
+            //   onPress={() => navigation.navigate(RouteName.CHECKOUT_SCREEN)}
+            // />
           ),
         }}
       />
@@ -272,6 +275,21 @@ export function HomeScsreenTabAll() {
           tabBarIcon: ({focused}) => (
             <VectorIcons
               color={focused ? Colors.theme_backgound : Colors.gray_text_color}
+              name="file-markdown"
+              icon="AntDesign"
+              size={SF(20)}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={RouteName.COURSES_SCREEN}
+        component={CourseTabScreenStack}
+        options={{
+          tabBarLabel: t('Course'),
+          tabBarIcon: ({focused}) => (
+            <VectorIcons
+              color={focused ? Colors.theme_backgound : Colors.gray_text_color}
               name="copy1"
               icon="AntDesign"
               size={SF(20)}
@@ -279,21 +297,6 @@ export function HomeScsreenTabAll() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name={RouteName.EXAM_TAB}
-        component={ExamTabScreenStack}
-        options={{
-          tabBarLabel: t('Customesidebar_title_20'),
-          tabBarIcon: ({focused}) => (
-            <VectorIcons
-              color={focused ? Colors.theme_backgound : Colors.gray_text_color}
-              name="open-book"
-              icon="Entypo"
-              size={SF(20)}
-            />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name={RouteName.WHISHILIST_TAB}
         component={WishlistTabScreenStack}

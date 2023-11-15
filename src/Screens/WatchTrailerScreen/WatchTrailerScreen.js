@@ -54,7 +54,7 @@ const WatchTrailerScreen = (props) => {
         alwaysShowNavBar={true}
         headerMaxHeight={340}
         headerMinHeight={55}
-        extraScrollHeight={0}
+        // extraScrollHeight={0}
         navbarColor="rgba(223,238,255,1)"
         titleStyle={WatchTrailerStyles.titleStyle}
         title={title()}
@@ -65,11 +65,11 @@ const WatchTrailerScreen = (props) => {
         containerStyle={WatchTrailerStyles.container}
         contentContainerStyle={WatchTrailerStyles.contentContainer}
         innerContainerStyle={WatchTrailerStyles.container}
-        scrollViewProps={{
-          onScrollBeginDrag: () => console.log("onScrollBeginDrag"),
-          onScrollEndDrag: () => console.log("onScrollEndDrag"),
-          showsVerticalScrollIndicator: false
-        }}
+        // scrollViewProps={{
+        //   onScrollBeginDrag: () => console.log("onScrollBeginDrag"),
+        //   onScrollEndDrag: () => console.log("onScrollEndDrag"),
+        //   showsVerticalScrollIndicator: false
+        // }}
       />
     </>
   );

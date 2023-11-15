@@ -8,54 +8,103 @@ import images from "../../../index";
 import { RouteName } from "../../../routes";
 import { useTranslation } from "react-i18next";
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { setUserLogin } from "../../../redux/action/AuthAction";
+import axios from 'axios';
+
 const ProfileTab = (props) => {
   const { navigation } = props;
   const { t } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
   const [modalcontent, setmodalcontent] = useState(0);
-  const [passwordVisibilityold, setpasswordVisibilityold] = useState(true);
-  const [passwordVisibilitynew, setpasswordVisibilitynew] = useState(true);
-  const [passwordVisibilityconfirm, setPasswordVisibilityconfirm] = useState(true);
   const { Colors } = useTheme();
   const ProfileTabStyle = useMemo(() => ProfileTabStyles(Colors), [Colors]);
+  const { userLogin, token } = useSelector(state => state.authReducer) || {};
+  const dispatch = useDispatch();
+
 
   const stateArray = {
-    Oldpassword: "",
-    Newpassword: "",
-    email: "",
-    Confirmpassword: "",
+    name: '',
+    email: '',
     number: null,
   };
   const [state, setState] = useState(stateArray);
-  const onChangeText = (text) => {
-    if (text === 'Oldpassword') setpasswordVisibilityold(!passwordVisibilityold);
-    if (text === 'Newpassword') setpasswordVisibilitynew(!passwordVisibilitynew);
-    if (text === 'Confirmpassword') setPasswordVisibilityconfirm(!passwordVisibilityconfirm);
-  };
+
+  useEffect(() => {
+    setState({
+      name: userLogin.fullName,
+      email: userLogin.email,
+      number: userLogin.phoneNumber,
+    });
+    console.log('name: ', state);
+  }, [])
+
   useEffect(() => {
     navigation.addListener('focus', () => {
       setModalVisible(false);
       setmodalcontent(0);
     });
   }, [navigation]);
+
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
   var alertdata = {
     'logout': t("Are_You_Sure_logout"),
   }
-  const onoknutton = () => {
-    navigation.navigate(RouteName.LOGIN_SCREEN);
-  }
+
+  const onoknutton = async () => {
+    try {
+      await GoogleSignin.signOut();
+      await auth().signOut();
+      dispatch(setUserLogin('', ''));
+
+      console.log("Sign out");
+      navigation.navigate(RouteName.LOGIN_SCREEN);
+    }
+    catch (err) {
+      console.log('Error at onoknutton(): ', err);
+    }
+  };
+  const editProfile = async () => {
+    const updateUser = {
+      ...userLogin,
+      fullName: state.name,
+      email: state.email,
+      phoneNumber: state.number,
+    };
+    dispatch(setUserLogin(updateUser, token));
+    try {
+      await axios.put(`https://learnconnectapitest.azurewebsites.net/api/user/${userLogin.id}`,
+        updateUser,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+        .then(res => {
+          console.log('Edit success');
+        })
+        .catch(err => console.log('Error at editProfile(): ', err));
+    }
+    catch (err) {
+      console.log('Error at editProfile(): ', err);
+    }
+  };
   return (
     <Container>
       <ScrollView>
         <View style={ProfileTabStyle.BackgroundWhite}>
           <View style={ProfileTabStyle.whilistminbody}>
             <View style={ProfileTabStyle.ImagCenter}>
-              <View>
-                <Image style={ProfileTabStyle.ImageStyles} resizeMode='cover' source={images.User_image_one_profile} />
-                <Text style={ProfileTabStyle.UserName}>{t("Allison_Perry_Name")}</Text>
+              <View style={{alignItems:'center'}}>
+                <Image style={[ProfileTabStyle.ImageStyles]} resizeMode='cover' source={{ uri: `${userLogin.profilePictureUrl}`, }} />
+                <Text style={ProfileTabStyle.UserName}>{state.name}</Text>
               </View>
             </View>
             <View style={ProfileTabStyle.ProfileDetailesMinview}>
@@ -65,11 +114,11 @@ const ProfileTab = (props) => {
               <View style={ProfileTabStyle.PhoneNumberAndIcon}>
                 <View style={ProfileTabStyle.BgWhiteShadow}>
                   <View>
-                    <Text style={ProfileTabStyle.PhoneNumberText}>{t("Phone_Number_Text")}</Text>
-                    <Text style={ProfileTabStyle.DigitNumberText}>96034 56878</Text>
+                    <Text style={ProfileTabStyle.PhoneNumberText}>{t("Full_Name_Text")}</Text>
+                    <Text style={ProfileTabStyle.DigitNumberText}>{state.name}</Text>
                   </View>
                   <View>
-                    <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(1) }} >
+                    <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(3) }} >
                       <View>
                         <VectorIcons
                           icon="EvilIcons"
@@ -130,73 +179,17 @@ const ProfileTab = (props) => {
                               :
                               modalcontent === 3 ?
                                 <View>
-                                  <Text style={ProfileTabStyle.ModalText}>{t("change_Your_Password_Text")}</Text>
+                                  <Text style={ProfileTabStyle.ModalText}>{t("Change Full Name")}</Text>
                                   <Spacing space={SH(10)} />
-                                  <View style={Style.FlexRowPassword}>
-                                    <View style={Style.InputViewWidth}>
-                                      <Spacing space={SH(35)} />
-                                      <Input
-                                        name="password"
-                                        placeholder={t("Old_Password")}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        textContentType="newPassword"
-                                        secureTextEntry={passwordVisibilityold}
-                                        onChangeText={(text) => setState({ ...state, Oldpassword: text })}
-                                        value={state.Oldpassword}
-                                        enablesReturnKeyAutomatically
-                                        placeholderTextColor={Colors.gray_text_color}
-                                      />
-                                      <TouchableOpacity style={Style.IconPostionAboluteTwo} onPress={() => { onChangeText("Oldpassword") }}>
-                                        <VectorIcons icon="Ionicons" name={passwordVisibilityold ? 'eye-off' : 'eye'} size={SF(25)} style={ProfileTabStyle.eyeiconset} />
-                                      </TouchableOpacity>
-                                    </View>
+                                  <View>
+                                    <Input
+                                      style={ProfileTabStyle.BgWhiteShadowInputModal}
+                                      onChangeText={(text) => setState({ ...state, name: text })}
+                                      value={state.name}
+                                      placeholder={t("Full_Name_Text")}
+                                      placeholderTextColor={Colors.gray_text_color}
+                                    />
                                   </View>
-                                  <Spacing space={SH(20)} />
-                                  <View style={Style.FlexRowPassword}>
-                                    <View style={Style.InputViewWidth}>
-                                      <Spacing space={SH(35)} />
-                                      <Input
-                                        inputStyle={Style.InputStyles}
-                                        name="password"
-                                        placeholder={t("New_Password")}
-                                        autoCapitalize="none"
-                                        placeholderTextColor={'gray'}
-                                        autoCorrect={false}
-                                        textContentType="newPassword"
-                                        secureTextEntry={passwordVisibilitynew}
-                                        onChangeText={(text) => setState({ ...state, Newpassword: text })}
-                                        value={state.Newpassword}
-                                        enablesReturnKeyAutomatically
-                                      />
-                                      <TouchableOpacity style={Style.IconPostionAboluteTwo} onPress={() => { onChangeText("Newpassword") }}>
-                                        <VectorIcons icon="Ionicons" name={passwordVisibilitynew ? 'eye-off' : 'eye'} size={SF(25)} style={ProfileTabStyle.eyeiconset} />
-                                      </TouchableOpacity>
-                                    </View>
-                                  </View>
-                                  <Spacing space={SH(20)} />
-                                  <View style={Style.FlexRowPassword}>
-                                    <View style={Style.InputViewWidth}>
-                                      <Spacing space={SH(35)} />
-                                      <Input
-                                        inputStyle={Style.InputStyles}
-                                        name="Confirm New Password"
-                                        placeholder={t("Conform_Password")}
-                                        placeholderTextColor={Colors.gray_text_color}
-                                        autoCapitalize="none"
-                                        autoCorrect={false}
-                                        textContentType="newPassword"
-                                        secureTextEntry={passwordVisibilityconfirm}
-                                        onChangeText={(text) => setState({ ...state, Confirmpassword: text })}
-                                        value={state.Confirmpassword}
-                                        enablesReturnKeyAutomatically
-                                      />
-                                      <TouchableOpacity style={Style.IconPostionAboluteTwo} onPress={() => { onChangeText("Confirmpassword") }}>
-                                        <VectorIcons icon="Ionicons" name={passwordVisibilityconfirm ? 'eye-off' : 'eye'} size={SF(25)} style={ProfileTabStyle.eyeiconset} />
-                                      </TouchableOpacity>
-                                    </View>
-                                  </View>
-                                  <Spacing space={SH(30)} />
                                 </View>
                                 :
                                 modalcontent === 4 ?
@@ -204,16 +197,20 @@ const ProfileTab = (props) => {
                                   :
                                   null}
                           {modalcontent === 1 || modalcontent === 2 || modalcontent === 3 ?
-                            <View style={ProfileTabStyle.ButtonsetModleTwoButton}>
-                              <View style={ProfileTabStyle.Marginright}>
-                                <Button onPress={() => setModalVisible(!modalVisible)}
-                                  buttonTextStyle={{ color: Colors.white_text_color }}
-                                  title={t("Ok_Text")} />
-                              </View>
-                              <View style={ProfileTabStyle.Marginright}>
-                                <Button buttonStyle={ProfileTabStyle.SingleButtonStyles} buttonTextStyle={ProfileTabStyle.SingleButtonText} title={t("Cancel_Button")} onPress={() => setModalVisible(!modalVisible)} />
-                              </View>
+                            // <View style={ProfileTabStyle.ButtonsetModleTwoButton}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                              <Button
+                                onPress={() => {
+                                  setModalVisible(!modalVisible),
+                                    editProfile()
+                                }}
+                                buttonTextStyle={{ color: Colors.white_text_color }}
+                                title={t("Ok_Text")} />
                             </View>
+                            // <View style={ProfileTabStyle.Marginright}>
+                            //   <Button buttonStyle={ProfileTabStyle.SingleButtonStyles} buttonTextStyle={ProfileTabStyle.SingleButtonText} title={t("Cancel_Button")} onPress={() => setModalVisible(!modalVisible)} />
+                            // </View>
+                            // </View>
                             :
                             <View style={ProfileTabStyle.ButtonsetModleTwoButton}>
                               <View style={ProfileTabStyle.MarginRightView}>
@@ -235,7 +232,7 @@ const ProfileTab = (props) => {
                 <View style={ProfileTabStyle.BgWhiteShadow}>
                   <View style={ProfileTabStyle.setpadiingtext}>
                     <Text style={ProfileTabStyle.PhoneNumberText}>{t("Email_Text")}</Text>
-                    <Text style={ProfileTabStyle.DigitNumberText}>{t("Testemail")}</Text>
+                    <Text style={ProfileTabStyle.DigitNumberText}>{state.email}</Text>
                   </View>
                   <View>
                     <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(2) }}>
@@ -254,11 +251,11 @@ const ProfileTab = (props) => {
               <View style={ProfileTabStyle.PhoneNumberAndIcon}>
                 <View style={ProfileTabStyle.BgWhiteShadow}>
                   <View>
-                    <Text style={ProfileTabStyle.PhoneNumberText}>{t("Password_Text")}</Text>
-                    <Text style={ProfileTabStyle.DigitNumberText}>******</Text>
+                    <Text style={ProfileTabStyle.PhoneNumberText}>{t("Phone_Number_Text")}</Text>
+                    <Text style={ProfileTabStyle.DigitNumberText}>{state.number}</Text>
                   </View>
                   <View>
-                    <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(3) }}>
+                    <TouchableOpacity onPress={() => { setModalVisible(true); setmodalcontent(1) }} >
                       <View>
                         <VectorIcons
                           icon="EvilIcons"

@@ -8,7 +8,6 @@ const SearchIconAndNotification = props => {
   const {SearchOnpress, NotificationOnpress, CheckOutOnPress} = props;
   return (
     <View style={Style.notificationivonandimhflexview}>
-      <ColorPicker />
       <TouchableOpacity onPress={() => SearchOnpress()}>
         <VectorIcons
           size={SF(25)}
@@ -27,14 +26,15 @@ const SearchIconAndNotification = props => {
           color={Colors.theme_backgound}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => CheckOutOnPress()}>
+      <ColorPicker />
+      {/* <TouchableOpacity onPress={() => CheckOutOnPress()}>
         <VectorIcons
           size={SF(25)}
           icon="AntDesign"
           name="shoppingcart"
           color={Colors.theme_backgound}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

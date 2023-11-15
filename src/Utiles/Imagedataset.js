@@ -1,8 +1,10 @@
-import {Rating, VectorIcons} from '../Components';
+import {default as Rating} from '../Components/CommonComponets/Rating';
+import {default as VectorIcons} from '../Components/CommonComponets/VectoreIcons';
 import React, { useState } from 'react';
-import images from '../index';
-import {SF, Colors} from '../Utiles';
-import {RouteName} from '../routes';
+import images from '../images/index';
+import {SF} from './dimensions';
+import {Colors} from './Colors';
+import {default as RouteName} from '../routes/RouteName';
 
 export const Swiperdata = [
   {
@@ -55,10 +57,10 @@ export const CarouselItemsFirst = [
   },
 ];
 export const LanguageDropdownData = [
-  {label: 'English', value: 'en'},
-  {label: 'Arabic', value: 'ara'},
-  {label: 'Spanish', value: 'Spa'},
-  {label: 'French', value: 'Fr'},
+  {label: 'English', value: 'en', key: 'en'},
+  {label: 'Arabic', value: 'ara', key: 'ara'},
+  {label: 'Spanish', value: 'Spa', key: 'spa'},
+  {label: 'French', value: 'Fr', key: 'fr'},
 ];
 export const HomeImageData = [
   {

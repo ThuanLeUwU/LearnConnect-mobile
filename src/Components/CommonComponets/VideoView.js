@@ -7,22 +7,36 @@ import Orientation from 'react-native-orientation-locker';
 const screenHeight = Dimensions.get('screen').height;
 const screenWidth = Dimensions.get('screen').width;
 
-const VideoPlayer = () => {
+const VideoPlayer = (props) => {
+    const {sourceUrl} = props;
     const videoPlayer = useRef(null);
     const [duration, setDuration] = useState(0);
     const [paused, setPaused] = useState(true);
 
     const [currentTime, setCurrentTime] = useState(0);
+    const [maxTime, setMaxTime] = useState(0);
     const [playerState, setPlayerState] = useState(PLAYER_STATES.PAUSED);
     const [isLoading, setIsLoading] = useState(true);
 
     const onSeek = (seek) => {
-        videoPlayer?.current.seek(seek);
+        if (seek <= maxTime) {
+            videoPlayer?.current.seek(seek);
+        }
+        console.log('seek: ',seek);
+        console.log('current: ',currentTime);
+        console.log('max: ',maxTime);
     };
-    const onSeeking = (currentVideoTime) => setCurrentTime(currentVideoTime);
+    const onSeeking = (currentVideoTime) => {
+        if (currentVideoTime > maxTime) {
+            return false;
+        }
+        setCurrentTime(currentVideoTime);
+        return true;
+    }
     const onPaused = (newState) => {
         setPaused(!paused);
         setPlayerState(newState);
+        console.log(screenHeight, Platform.OS);
     };
     const onReplay = () => {
         videoPlayer?.current.seek(0);
@@ -38,6 +52,9 @@ const VideoPlayer = () => {
     const onProgress = (data) => {
         if (!isLoading) {
             setCurrentTime(data.currentTime);
+            if(data.currentTime > maxTime) {
+                setMaxTime(data.currentTime);
+            }
         }
     };
     const onLoad = (data) => {
@@ -72,9 +89,9 @@ const VideoPlayer = () => {
                 onProgress={onProgress}
                 paused={paused}
                 ref={(ref) => (videoPlayer.current = ref)}
-                resizeMode={'cover'}
+                resizeMode='cover'
                 source={{
-                    uri: 'https://youtu.be/iqCh5UUswlI',
+                    uri: sourceUrl,
                   }}
                 style={styles.backgroundVideo}
             />
@@ -100,19 +117,19 @@ const VideoPlayer = () => {
 
 const styles = StyleSheet.create({
     backgroundVideo: {
-        height: 370,
+        height: 200,
         width: '100%',  
-        backgroundColor:'rgba(223,238,255,1)'   
+        backgroundColor:'rgba(223,238,255,1)'
     },
     mediaControls: {
-        width: screenHeight - 500,
+        width: '80%',
         height: '100%',
         flex: 1,
-        alignSelf: Platform.OS === 'android' ? screenHeight < 800 ? 'center' : 'flex-start' : 'center',
+        alignSelf: 'center',
     },
     backgroundVideoFullScreen: {
-        height: screenHeight,
-        width: screenWidth,
+        height: screenWidth,
+        width: screenHeight*0.5
     },
 });
 

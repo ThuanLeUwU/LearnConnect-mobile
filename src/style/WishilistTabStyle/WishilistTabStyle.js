@@ -40,8 +40,8 @@ export default WishilistTabStyle = (Colors) => StyleSheet.create({
     elevation: Platform.OS === 'ios' ? 1 : 2,
   },
   whilistminbody: {
-    width: '93%',
-    marginHorizontal: '3.3%',
+    width: '92%',
+    marginHorizontal: '4%',
     marginTop: '0%',
     marginBottom: SH(5),
   },

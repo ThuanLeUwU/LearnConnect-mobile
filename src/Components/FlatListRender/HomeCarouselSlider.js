@@ -1,66 +1,25 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {HomeStyles} from '../../style';
-import {widthPercent, CarouselItemsFirst} from '../../Utiles';
+import {widthPercent} from '../../Utiles';
 import {useTranslation} from 'react-i18next';
 import {useTheme} from '@react-navigation/native';
-import axios from 'axios';
-// import axios from 'axios';
+import { Rating } from 'react-native-ratings';
 
 const HomeCarouselSlider = props => {
-  const {navigation, onPress} = props;
+  const {courses, onPress} = props;
   const {Colors} = useTheme();
   const HomeStyle = useMemo(() => HomeStyles(Colors), [Colors]);
   let _slider1Ref;
   const {t} = useTranslation();
-  const [carouselItem, setCarouselItem] = useState([]);
-  console.log('tui nè', carouselItem);
-  // const fetchData = async () => {
-  //     console.log(await axios.get('https://learnconnectapitest.azurewebsites.net/api/course'))
-  //       // .then(res => {
-  //         // cái đó là eslint thôi
-
-  //       //   console.log('dddd', res.data);
-  //       //   setCarouselItem(res?.data);
-  //       // });
-  //     // if (responseData?.data) {
-  //     // }
-  //   // } catch (error) {
-  //   //   console.log('Không ra');
-  //   // }
-
-  //   // console.log('tui nè má', responseData?.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  //   setTimeout(() => {
-  //     console.log('lâu zậy', carouselItem);
-  //   }, 10000);
-  // }, [carouselItem]);
-
-  useEffect(() => {
-    const abc = async () => {
-      await axios
-        .get('https://learnconnectapitest.azurewebsites.net/api/course')
-        .then(res => {
-          console.log('rés', res?.data);
-          setCarouselItem(res?.data);
-        })
-        .catch(err => console.log('err', err));
-    };
-    abc();
-  }, []);
-
-  console.log('dâta', carouselItem);
 
   const _renderItem = ({item, index}) => {
     return (
       <View>
         <TouchableOpacity
           style={HomeStyle.rounftextview}
-          onPress={() => onPress()}>
+          onPress={() => onPress(item.id)}>
           <Image
             style={HomeStyle.imagsetstyle}
             resizeMode="stretch"
@@ -68,8 +27,35 @@ const HomeCarouselSlider = props => {
               uri: `${item.imageUrl}`,
             }}
           />
-          <Text style={HomeStyle.textContainer}>{t(item.name)}</Text>
-          <Text style={HomeStyle.textContainertwo}>{t(item.description)}</Text>
+          <Text 
+            style={[
+              HomeStyle.textContainer, 
+              {
+                textShadowColor: 'rgb(40, 40, 40)', 
+                textShadowRadius: 1, 
+                textShadowOffset: 
+                  {
+                    width: 2, 
+                    height: 2,
+                  }
+              }
+            ]}
+          >
+            {t(item.name)}
+          </Text>
+          <Text style={[HomeStyle.textContainertwo, {textShadowColor: 'gray', textShadowRadius: 1, textShadowOffset: {width: 1.5, height: 1.5,}}]}>{t(item.categoryName)}</Text>
+          {/* <Text style={HomeStyle.textContainerthree}>{t(item.averageRating)}</Text> */}
+          <Rating 
+            type='custom'
+            ratingColor={Colors.amber_color}
+            ratingBackgroundColor={'transparent'}
+            ratingCount={5}
+            imageSize={20}
+            startingValue={item.averageRating}
+            style={[HomeStyle.textContainertwo, {paddingTop:100, color: 'transparent'}]}
+            isDisabled={false}
+            readonly 
+          />
         </TouchableOpacity>
       </View>
     );
@@ -77,7 +63,7 @@ const HomeCarouselSlider = props => {
   return (
     <Carousel
       ref={c => (_slider1Ref = c)}
-      data={carouselItem}
+      data={courses}
       renderItem={_renderItem}
       sliderWidth={widthPercent(100)}
       itemWidth={widthPercent(85)}

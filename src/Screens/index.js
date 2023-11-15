@@ -22,3 +22,5 @@ export * from './EndCallScreen';
 export * from './SettingsScreen';
 export * from './NotificationScreen';
 export * from './OnlineClassScreen';
+export * from './CourseLearnScreen';
+

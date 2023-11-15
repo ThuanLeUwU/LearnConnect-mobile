@@ -15,13 +15,15 @@ import {useTranslation} from 'react-i18next';
 import images from '../../index';
 
 const CongrejulationScreen = props => {
-  const {navigation} = props;
+  const {navigation, route} = props;
   const {t} = useTranslation();
   const {Colors} = useTheme();
   const CongratulationStyles = useMemo(
     () => CongratulationStyle(Colors),
     [Colors],
   );
+  const course = route?.params?.data;
+  console.log('Data: ', course);
 
   return (
     <Container>
@@ -53,7 +55,9 @@ const CongrejulationScreen = props => {
                     <Button
                       title={t('photography_Titles_2')}
                       onPress={() =>
-                        navigation.navigate(RouteName.REVIEWS_SCREEN)
+                        navigation.navigate(RouteName.COURSES_DETAILS_SCREEN,{
+                          data: course.id,
+                        })
                       }
                     />
                   </View>

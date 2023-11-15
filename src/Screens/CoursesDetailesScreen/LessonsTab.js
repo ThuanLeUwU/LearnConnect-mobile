@@ -8,7 +8,7 @@ import { LessonsTabData, SH } from '../../Utiles';
 const LessonsTab = (props) => {
   const { Colors } = useTheme();
   const LessonsTabStyles = useMemo(() => LessonsTabStyle(Colors), [Colors]);
-  const { onPress } = props;
+  const { onPress, listLecture } = props;
 
   return (
     <Container>
@@ -16,11 +16,11 @@ const LessonsTab = (props) => {
         <View>
           <Spacing space={SH(20)} />
           <FlatList
-            data={LessonsTabData}
+            data={listLecture}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (<LessonsTabViews
               item={item}
-              onPress={() => onPress()}
+              onPress={() => onPress(item)}
             />)}
             keyExtractor={item => item.id}
           />

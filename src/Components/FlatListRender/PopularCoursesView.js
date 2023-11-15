@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import {HomeStyles} from '../../style';
 import {useTranslation} from 'react-i18next';
 import {useTheme} from '@react-navigation/native';
+import { Rating } from 'react-native-ratings';
 import axios from 'axios';
 
 const PopularCoursesView = props => {
@@ -10,21 +11,6 @@ const PopularCoursesView = props => {
   const {item, onPress} = props;
   const {Colors} = useTheme();
   const HomeStyle = useMemo(() => HomeStyles(Colors), [Colors]);
-  const [listCourse, setListCourse] = useState([]);
-  console.log('listCourse', listCourse);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const responseData = await axios.get(
-          'https://learnconnectapitest.azurewebsites.net/api/Course',
-        );
-        setListCourse(responseData?.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <View style={HomeStyle.whiteshadowimgbottom}>
@@ -32,21 +18,31 @@ const PopularCoursesView = props => {
         <Image
           style={HomeStyle.imagsetstylesetthreeslider}
           resizeMode="cover"
-          source={item.imge}
+          source={{uri: `${item.imageUrl}`}}
         />
       </TouchableOpacity>
       <View style={HomeStyle.alltextleftset}>
         <Text style={HomeStyle.whitebodyimagetextstyletwo2}>
-          {t(item.blacktitle)}
+          {t(item.name)}
         </Text>
         <Text style={HomeStyle.whitebodyimagetextstyles}>
-          {t(item.whitebodyimagetext)}
+          {t(item.shortDescription)}
         </Text>
         <View style={HomeStyle.flexrowsettext}>
           <View style={HomeStyle.flexsettileimgview}>
-            {item.rating}
+            <Rating 
+              type='custom'
+              ratingColor={Colors.amber_color}
+              ratingBackgroundColor={Colors.chinese_silver}
+              ratingCount={5}
+              imageSize={17}
+              startingValue={item.averageRating}
+              isDisabled={false}
+              ratingStyle={HomeStyle.whitebodyimagetextstyletwo}
+              readonly 
+            />
             <Text style={HomeStyle.whitebodyimagetextstyletwo}>
-              {t(item.blacktitledigit2)}
+              {t(item.price==0 ? 'Free' : item.price+' VND')}
             </Text>
           </View>
         </View>

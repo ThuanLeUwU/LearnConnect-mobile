@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { SH, SW, SF, Fonts } from '../../Utiles';
+import { SH, SW, SF, Fonts, SCREEN_WIDTH } from '../../Utiles';
 
 export default CoursesStyle = (Colors) => StyleSheet.create({
     keybordtopviewstyle: {
@@ -36,24 +36,33 @@ export default CoursesStyle = (Colors) => StyleSheet.create({
     flexDirectiwhilist: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '100%',
-        paddingLeft: SH(10),
-        paddingRight: SH(30),
-        paddingVertical:SH(10)
+        width: '95%',
+        paddingHorizontal: '2.5%',
+        paddingVertical: '2.5%'
     },
     textviewsetwhishlist: {
-        width: '62%',
+        width: SCREEN_WIDTH * 0.85 - SW(100),
+    },
+    flexrowheart: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '97.5%',
+    },
+    setheart: {
+        color: Colors.theme_backgound,
     },
     designfonttext: {
-        fontSize: SF(16),
-        fontFamily: Fonts.DMSans_Medium,
-        color: Colors.black_text_color,
-        width: '100%'
-    },
-    dolardigittext: {
         fontSize: SF(17),
         fontFamily: Fonts.DMSans_Medium,
         color: Colors.black_text_color,
+        width: '80%'
+    },
+    dolardigittext: {
+        fontSize: SF(17),
+        fontFamily: Fonts.Poppins_Bold,
+        color: Colors.black_text_color,
+        flexDirection: 'column',
+        textAlign: 'right',
         width: '100%',
         marginTop: '3%',
     },
@@ -79,12 +88,12 @@ export default CoursesStyle = (Colors) => StyleSheet.create({
     stariconview: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '100%',
+        width: '49%',
     },
     imagesetios: {
-        marginRight: SH(13),
+        marginRight: '5%',
         width: SW(100),
-        height: SH(100),
+        height: SW(100),
         borderRadius: SH(7),
     },
     setstartanddolardtext: {
@@ -92,15 +101,15 @@ export default CoursesStyle = (Colors) => StyleSheet.create({
         justifyContent: 'space-between',
         position: 'absolute',
         bottom: SH(0),
-        width: '90%'
+        width: '97.5%'
     },
     setreviewstext: {
-        fontSize: SF(15),
+        fontSize: SF(12),
         fontFamily: Fonts.DMSans_Medium,
         color: Colors.black_text_color,
-        width: '100%',
-        position: 'absolute',
-        bottom: 25,
+        width: '95%',
+        position: 'relative',
+        top: SF(0),
     }
 
 });

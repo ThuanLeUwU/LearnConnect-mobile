@@ -31,9 +31,11 @@ import {
   TranslationScreen,
   Checkoutscreen,
   ReviewsScreen,
+  CourseLearnScreen,
 } from '../Screens';
 import {AppHeader, ColorPicker} from '../Components';
 import {Colors} from '../Utiles';
+import VnPaySceeen from '../Screens/CheckOutScreen/VnPayScreen';
 
 const Stack = createStackNavigator();
 const App = props => {
@@ -175,6 +177,11 @@ const App = props => {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name={RouteName.COURSE_LEARN_SCREEN}
+          component={CourseLearnScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name={RouteName.SEARCH_POPULARTAG_SCREEN}
           component={SearchPopularTagScreen}
           options={{headerShown: false}}
@@ -203,7 +210,7 @@ const App = props => {
           options={{
             ...HeaderArray,
             headerTitle: () => (
-              <AppHeader {...props} headerTitle={'Customesidebar_title_6'} />
+              <AppHeader {...props} headerTitle={'Payment'} />
             ),
             headerRight: () => {
               return <ColorPicker />;
@@ -217,6 +224,16 @@ const App = props => {
             ...HeaderArray,
             headerTitle: () => (
               <AppHeader {...props} headerTitle={'Customesidebar_title_7'} />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name={RouteName.VNPAY_SCREEN}
+          component={VnPaySceeen}
+          options={{
+            ...HeaderArray,
+            headerTitle: () => (
+              <AppHeader {...props} headerTitle={'VNPay'} />
             ),
           }}
         />

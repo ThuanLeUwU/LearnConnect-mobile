@@ -13,7 +13,7 @@ const HomeSmallImageView = (props) => {
     return (
         <TouchableOpacity onPress={() => onPress()}>
             <View style={HomeStyle.rounftextviewsmall}>
-                <Image style={HomeStyle.ImageSmallView} resizeMode='cover' source={item.imge} />
+                <Image style={HomeStyle.ImageSmallView} resizeMode='cover' backgroundColor={Colors.theme_backgound} />
                 <Text style={HomeStyle.roundimagtitletextset}>
                     {t(item.roundimagtitle)}
                 </Text>

@@ -60,7 +60,7 @@ const Translation = props => {
         <View style={LanguageStyle.BtnVieStyle}>
           <Button
             title={t('Confirm_Text')}
-            onPress={() => navigation.navigate(RouteName.HOME_SCREEN)}
+            onPress={() => navigation.navigate(RouteName.LOGIN_SCREEN)}
           />
         </View>
       </View>

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -28,14 +28,51 @@ import {
 import {useTranslation} from 'react-i18next';
 import {RouteName} from '../../../routes';
 import {useTheme} from '@react-navigation/native';
+import axios from 'axios';
+import {useSelector} from 'react-redux';
+import Loading from '../../../Components/CommonComponets/Loading';
 
 const HomeTab = props => {
+  const {token} = useSelector(state => state.authReducer) || {};
   const {t} = useTranslation();
   const {navigation} = props;
   const {Colors} = useTheme();
   const HomeStyle = useMemo(() => HomeStyles(Colors), [Colors]);
 
-  return (
+  const [loading, setLoading] = useState(true);
+  const [topCourse, setTopCourse] = useState([]);
+  const [listCourse, setListCourse] = useState([]);
+
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+    const getListCourse = async () => {
+      await axios.get('https://learnconnectapitest.azurewebsites.net/api/course/get-courses-paging?currentPage=1&pageSize=6')
+        .then(res => {
+          console.log('List Course: ', res?.data.listCourse);
+          setListCourse(res?.data.listCourse);
+          // setLoading(false);
+        })
+        .catch(err => console.log('Error at getListCourse(): ', err));
+    };
+    getListCourse();
+
+    const getTopCourse = async () => {
+      await axios.get('https://learnconnectapitest.azurewebsites.net/api/course/get-top-enrolled-courses')
+        .then(res => {
+          console.log('Top Course: ', res?.data);
+          setTopCourse(res?.data);
+          // setLoading(false);
+        })
+        .catch(err => console.log('Error at getTopCourse(): ', err));
+    };
+    getTopCourse();
+    setLoading(false);
+  }, []);
+
+  return loading ? (
+    <Loading />
+  ) :(
     <>
       <Container>
         <View style={HomeStyle.minstyleviewphotograpgy}>
@@ -50,8 +87,11 @@ const HomeTab = props => {
                 <View style={HomeStyle.minflexview}>
                   <View style={HomeStyle.minviewsigninscreen}>
                     <HomeCarouselSlider
-                      onPress={() =>
-                        navigation.navigate(RouteName.COURSES_DETAILS_SCREEN)
+                      courses={topCourse}
+                      onPress={(data) =>
+                        navigation.navigate(RouteName.COURSES_DETAILS_SCREEN,{
+                          data: data,
+                        })
                       }
                     />
                     <Spacing space={SH(30)} />
@@ -64,7 +104,10 @@ const HomeTab = props => {
                           <HomeSmallImageView
                             item={item}
                             onPress={() =>
-                              navigation.navigate(RouteName.COURSES_SCREEN)
+                              // navigation.navigate(RouteName.WATCH_TRAILER_SCREEN)
+                              // navigation.navigate(RouteName.REVIEWS_SCREEN)
+                              navigation.navigate(RouteName.COURSE_LEARN_SCREEN)
+
                             }
                           />
                         )}
@@ -80,16 +123,16 @@ const HomeTab = props => {
                     </TouchableOpacity>
                     <Spacing space={SH(10)} />
                     <FlatList
-                      data={PopularCoursesData}
+                      data={topCourse}
                       horizontal
                       showsHorizontalScrollIndicator={false}
                       renderItem={({item}) => (
                         <PopularCoursesView
                           item={item}
                           onPress={() =>
-                            navigation.navigate(
-                              RouteName.COURSES_DETAILS_SCREEN,
-                            )
+                            navigation.navigate(RouteName.COURSES_DETAILS_SCREEN,{
+                              data: item.id,
+                            })
                           }
                         />
                       )}
@@ -98,20 +141,20 @@ const HomeTab = props => {
                     />
                     <Spacing space={SH(30)} />
                     <Text style={HomeStyle.popularcourcetexttwo}>
-                      {t('New_Courses')}
+                      {t('List Courses')}
                     </Text>
                     <Spacing space={SH(10)} />
                     <FlatList
-                      data={NewCoursesData}
+                      data={listCourse}
                       horizontal
                       showsHorizontalScrollIndicator={false}
                       renderItem={({item}) => (
                         <NewCoursesView
                           item={item}
-                          onPress={() =>
-                            navigation.navigate(
-                              RouteName.COURSES_DETAILS_SCREEN,
-                            )
+                          onPress={(data) =>
+                            navigation.navigate(RouteName.COURSES_DETAILS_SCREEN,{
+                              data: item.id,
+                            })
                           }
                         />
                       )}

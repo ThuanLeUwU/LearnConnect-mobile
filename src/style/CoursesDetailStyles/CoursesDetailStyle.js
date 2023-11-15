@@ -140,11 +140,6 @@ export default CoursesDetailStyle = (Colors) => StyleSheet.create({
         width: '100%',
         marginBottom: SH(20),
     },
-    minviewfoerecious: {
-        flexDirection: 'row',
-        marginTop: SH(15),
-        alignItems: 'center'
-    },
     buttonsetwatch: {
         borderWidth: SH(1),
         backgroundColor: Colors.white_text_color,
@@ -224,7 +219,7 @@ export default CoursesDetailStyle = (Colors) => StyleSheet.create({
         elevation: 1,
     },
     setbuttonwidthview: {
-        width: '60%',
+        width: '30%',
     },
     dolardtextset: {
         color: Colors.black_text_color,
@@ -281,5 +276,8 @@ export default CoursesDetailStyle = (Colors) => StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%',
         paddingRight: SH(20)
-    }
+    },
+    setheart: {
+        color: Colors.theme_backgound,
+    },
 });

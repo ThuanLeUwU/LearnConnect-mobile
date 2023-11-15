@@ -42,11 +42,24 @@ const CustomSidebarMenu = props => {
             </TouchableOpacity>
             <TouchableOpacity
               style={Sidemenu.flexrowset}
-              onPress={() => Onpressfunction(RouteName.MY_COURSES_TAB)}>
+              onPress={() => Onpressfunction(RouteName.COURSES_SCREEN)}>
               <VectorIcons
                 icon="AntDesign"
                 size={SF(19)}
                 name="copy1"
+                color={Colors.theme_backgound}
+              />
+              <Text style={Sidemenu.hometextstyle}>
+                {t('Course')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={Sidemenu.flexrowset}
+              onPress={() => Onpressfunction(RouteName.MY_COURSES_TAB)}>
+              <VectorIcons
+                icon="AntDesign"
+                size={SF(19)}
+                name="file-markdown"
                 color={Colors.theme_backgound}
               />
               <Text style={Sidemenu.hometextstyle}>

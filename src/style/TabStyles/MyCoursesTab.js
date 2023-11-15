@@ -58,10 +58,10 @@ export default MyCoursesTabStyle = (Colors) => StyleSheet.create({
     paddingRight: SH(15),
   },
   designfonttext: {
-    fontSize: SF(16),
+    fontSize: SF(17),
     fontFamily: Fonts.Poppins_Medium,
     color: Colors.black_text_color,
-    width: '100%',
+    width: '80%',
     textAlign:'left'
   },
   dolardigittext: {
@@ -112,8 +112,7 @@ export default MyCoursesTabStyle = (Colors) => StyleSheet.create({
   flexrowheart: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '90%',
-
+    width: '97.5%',
   },
   setheart: {
     color: Colors.theme_backgound,
@@ -122,7 +121,7 @@ export default MyCoursesTabStyle = (Colors) => StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:'center',
-    width: '100%',
+    width: '97.5%',
     position: 'absolute',
     bottom: SH(0),
   },
@@ -157,14 +156,14 @@ export default MyCoursesTabStyle = (Colors) => StyleSheet.create({
   setimagestykle: {
     width: SW(100),
     height: SW(100),
-    marginRight: SH(5),
+    marginRight: SH(0),
     borderRadius: SH(10),
   },
   videoandtextsetup: {
-   paddingTop:SH(10),
+    paddingTop:SH(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    width: '97.5%',
     alignItems: 'center',
   }
 });

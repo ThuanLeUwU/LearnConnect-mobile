@@ -33,11 +33,12 @@ const RouteName = {
   LANGUAGE_SCREEN: 'TranslationScreen',
   COURSES_SCREEN: 'CoursesScreen',
   BUY_COURSES_SCREEN: 'BuyCourses',
-  PAYMENT_SCREEN: 'PaymentScreen',
   CONGREJULATION_SCREEN: 'CongrejulationScreen',
   INTRUDUCTION_PROFILE_SCREEN: 'InstructorsProfiledcreen',
   SETTINGS_SCREEN: 'SettingsScreen',
   NOTIFICATION_SCREEN: 'NotificationScreen',
   SEARCH_POPULARTAG_SCREEN: 'SearchPopularTagScreen',
+  VNPAY_SCREEN: 'VnPaySceeen',
+  COURSE_LEARN_SCREEN: 'CourseLearnScreen'
 };
 export default RouteName;

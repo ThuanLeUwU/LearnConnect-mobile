@@ -106,7 +106,7 @@ export default Checkoutscreenstyle = (Colors) => StyleSheet.create({
   },
   textstylebeginners: {
     color: Colors.black_text_color,
-    fontSize: SF(17),
+    fontSize: SF(22),
     paddingBottom: SH(5),
     fontFamily: Fonts.DMSans_Medium,
     width: '90%'
@@ -124,7 +124,7 @@ export default Checkoutscreenstyle = (Colors) => StyleSheet.create({
   },
   setreviewstext: {
     color: Colors.gray_text_color,
-    fontSize: SF(15),
+    fontSize: SF(19),
     fontFamily: Fonts.DMSans_Medium
   },
   setbuttontwowidth: {
@@ -158,8 +158,7 @@ export default Checkoutscreenstyle = (Colors) => StyleSheet.create({
   },
   ratingstextstyle: {
     color: Colors.gray_text_color,
-    fontSize: SF(18),
-    fontFamily:Fonts.DMSans_Medium
+    fontSize: SF(15),
   },
   simpletxtset: {
     color: Colors.gray_text_color,
@@ -176,6 +175,8 @@ export default Checkoutscreenstyle = (Colors) => StyleSheet.create({
     borderBottomColor: Colors.light_gray_text_color
   },
   whitecolorsetbgcolor: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'absolute',
     bottom: SH(0),
     width: '100%',

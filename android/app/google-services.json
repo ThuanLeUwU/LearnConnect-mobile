@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:915054679433:android:8d5816871398cb3aeabd58",
+        "mobilesdk_app_id": "1:915054679433:android:731f67bf4e891b0eeabd58",
         "android_client_info": {
           "package_name": "com.company.learnconnect"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "915054679433-np8galpj7led2ui67r7uabb62obqi1rn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.learnconnect",
+            "certificate_hash": "0ac7543834e664feee4947a683743f5db6d0a9a5"
+          }
+        },
         {
           "client_id": "915054679433-v7oeg9lcvkurb30l28j4dfbiemqkocq9.apps.googleusercontent.com",
           "client_type": 1,
@@ -20,10 +28,6 @@
             "package_name": "com.company.learnconnect",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
-        },
-        {
-          "client_id": "915054679433-fsnp9ueks5o2ges1tn7s8g32qgiefu6b.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [

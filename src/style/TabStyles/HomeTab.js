@@ -66,7 +66,7 @@ export default HomeStyles = (Colors) => StyleSheet.create({
     position: 'absolute',
     width: '100%',
     paddingHorizontal: SH(15),
-    paddingBottom: SH(50),
+    paddingBottom: SH(60),
     color: Colors.white_text_color,
   },
   textContainertwo: {
@@ -101,8 +101,8 @@ export default HomeStyles = (Colors) => StyleSheet.create({
   },
   ImageSmallView: {
     width: SW(130),
-    height: SW(130),
-    borderRadius: SH(300)
+    height: SW(60),
+    borderRadius: SH(50)
   },
   subtitleEven: {
     color: Colors.black_text_color
